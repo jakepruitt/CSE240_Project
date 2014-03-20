@@ -12,38 +12,38 @@ class FlightNode{
 		HubNode* source;
 		HubNode* destination;
 		FlightHub *next;
-		
+
 		virtual float getBaggageFees()
 		{
-			
+
 		}
-		
+
 		virtual int getDelay()
 		{
-			
+
 		}
 };
 
-class FlightSouthWest{
+class FlightSouthWest : virtual public FlightNode{
 	public:
 		float getBaggageFees()
 		{
-			
+
 		}
 };
 
-class FlightUSAirway{
+class FlightUSAirway : virtual public FlightNode{
 	public:
 		float getBaggageFees()
 		{
-			
+
 		}
 };
 
-class FlightDelta{
+class FlightDelta : virtual public FlightNode{
 	public:
 		float getBaggageFees()
 		{
-			
+
 		}
 };
