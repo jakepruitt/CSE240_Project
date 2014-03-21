@@ -11,7 +11,7 @@ class FlightNode{
 		int duration;
 		HubNode* source;
 		HubNode* destination;
-		FlightHub *next;
+		FlightNode *next;
 		
 		virtual float getBaggageFees()
 		{
