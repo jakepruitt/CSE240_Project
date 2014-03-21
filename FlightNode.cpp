@@ -14,6 +14,7 @@ class FlightNode{
 		int duration;
 		HubNode* source;
 		HubNode* destination;
+<<<<<<< HEAD
 		FlightHub *next;
 
 		virtual float getBaggageFees()
@@ -51,3 +52,42 @@ class FlightDelta : virtual public FlightNode{
 		}
 };
 >>>>>>> 520d43a90db9e97deb35161793ce6066f7c2dfc7
+=======
+		FlightNode *next;
+		
+		virtual float getBaggageFees()
+		{
+			
+		}
+		
+		virtual int getDelay()
+		{
+			
+		}
+};
+
+class FlightSouthWest{
+	public:
+		float getBaggageFees()
+		{
+			
+		}
+};
+
+class FlightUSAirway{
+	public:
+		float getBaggageFees()
+		{
+			
+		}
+};
+
+class FlightDelta{
+	public:
+		float getBaggageFees()
+		{
+			
+		}
+};
+>>>>>>> 2b33974027473240f198a78304556a9b91eeb648
+>>>>>>> JRomaine-patch-2
