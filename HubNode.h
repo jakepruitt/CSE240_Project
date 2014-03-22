@@ -8,7 +8,7 @@ class HubNode{
 	public:
 		string name;
 		string location;
-		HubNode* next;
+		HubNode *next;
 		FlightNode* headFlights;
 };
 
