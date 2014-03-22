@@ -10,6 +10,6 @@ class HubNode{
 		string location;
 		HubNode *next;
 		FlightNode* headFlights;
-};
+} *headHub = NULL;
 
 #endif
