@@ -18,8 +18,12 @@ void addHub(string airport, string city) {
 	newHubNode->headFlights = NULL;
 
 	// Insert new HubNode into linkedlist
-	newHubNode->next = headHub->next;
-	headHub->next = newHubNode;
+	if (headHub == NULL) {
+		headHub = newHubNode;
+	} else {
+		newHubNode->next = headHub->next;
+		headHub->next = newHubNode;
+	}
 };
 
 // Inserts flight into LinkedList based on string parameters for Flight attributes
@@ -40,9 +44,9 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 	}*/
 
 
-	Date_Time departure = Date_Time(departure);
-	HubNode* sourceHub = findHub(sourceAirportName);
-	HubNode* destinationHub = findHub(destinationAirportName);
+	Date_Time departureTime = Date_Time(departure);
+	HubNode* sourceHub = searchHub(sourceAirportName, headHub);
+	HubNode* destinationHub = searchHub(destinationAirportName, headHub);
 
 	newFlightNode->flightNumber = FlightNumber;
 	newFlightNode->price = price;
@@ -53,4 +57,11 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 
 	newFlightNode->next = sourceHub->headFlights;
 	sourceHub->headFlights = newFlightNode;
+
+	if (sourceHub->headFlights == NULL) {
+		sourceHub->headFlights = newFlightNode;
+	} else {
+		newFlightNode->next = sourceHub->headFlights;
+		sourceHub->headFlights = newFlightNode;
+	}
 };

@@ -4,6 +4,8 @@
 #include <iostream>
 #include <string> 
 
+using namespace std;
+
 class Date_Time{
 	public:
 		Date_Time();				// Default constructor (initializes all values to 0)

@@ -1,5 +1,6 @@
 //CSV IO
 //Author:  Andrew Farber
+#include "IO.h"
 
 // Import Lib
 #include <iostream>
@@ -8,25 +9,27 @@
 
 #include "ListCreation.h"
 
+
 using namespace std;
 
-#pragma warning(disable: 4996)
 
-
-void importHub(){
+void importHub() {
 	
 	// CSV Format
 	// airport, cityName
 	string airport;		// Holds the name of the airport
 	string cityName;	// Holds the full name of the city 
+	string ignore;
 
 	fstream fileHandler;
 	fileHandler.open("Hub.csv", ios::in | ios:: binary);
 
 	if(fileHandler.is_open()){
+		getline(fileHandler, ignore, '\n');
 		while(getline(fileHandler, airport, ',')){
-			getline(fileHandler, cityName, ',');
-			addhub(airport, cityName);
+			getline(fileHandler, cityName, '\r');
+			getline(fileHandler, ignore, '\n');
+			addHub(airport, cityName);
 		}
 		fileHandler.close();
 	}
@@ -34,9 +37,9 @@ void importHub(){
 		cout << "\nERROR:  Could not open file for loading data.\n";
 	}
 
-}
+};
 
-void importFlight(){
+void importFlight() {
 
 	// CSV Format
 	// flightNumber, price, sourceAirport, destinationAiport, departureTime, duration, company
@@ -47,6 +50,7 @@ void importFlight(){
 	string departureTime;			// Holds time that plan leaves sourceAirport
 	string duration;				// Holds time of flight
 	string company;					// Holds company of airline 
+	string ignore;
 
 	double price_num;
 	int duration_num;
@@ -55,6 +59,7 @@ void importFlight(){
 	fileHandler.open("Flight.csv", ios::in | ios:: binary);
 
 	if(fileHandler.is_open()){
+		getline(fileHandler, ignore, '\n');
 		while(getline(fileHandler, flightNumber, ',')){
 			getline(fileHandler, price, ',');
 			istringstream(price) >> price_num;			//converts from string to double
@@ -63,7 +68,8 @@ void importFlight(){
 			getline(fileHandler, departureTime, ',');
 			getline(fileHandler, duration, ',');
 			istringstream(duration) >> duration_num;		//converts from string to int
-			getline(fileHandler, company, ',');
+			getline(fileHandler, company, '\r');
+			getline(fileHandler, ignore, '\n');
 			addFlight(flightNumber, price_num, departureTime, duration_num, sourceAirport, destinationAirport, company);  //Note i added company to inputs
 		}
 		fileHandler.close();
@@ -72,6 +78,6 @@ void importFlight(){
 		cout << "\nERROR:  Could not open file for loading data.\n";
 	}
 
-}
+};
 
 

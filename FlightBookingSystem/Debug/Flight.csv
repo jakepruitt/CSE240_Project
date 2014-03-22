@@ -1,0 +1,61 @@
+Number,Price,Source Airport,Destination,Departure Time,Duration,Company
+DT1001,350.55,Albany International Airport,Tucson International Airport,15/08/15/12/2013,240,Delta
+DT1002,199.99,Phoenix Sky Harbor International Airport,Los Angeles International Airport,00/01/18/12/2013,180,Delta
+DT1003,250.88,Chicago O'Hare International Airport,Whiteman Airport,15/08/15/12/2013,300,Delta
+DT1004,299.99,General Edward Lawrence Logan International Airport,San Francisco International Airport,30/15/16/12/2013,240,Delta
+DT1005,350.55,Mc Carran International Airport,San Diego International Airport,15/08/15/12/2013,60,Delta
+DT1006,299.99,John F Kennedy International Airport,Albany International Airport,30/15/16/12/2013,300,Delta
+DT1007,350.55,Miami International Airport,Chicago Midway International Airport,45/20/17/12/2013,240,Delta
+DT1008,400.01,Honolulu International Airport,Chicago O'Hare International Airport,30/15/16/12/2013,240,Delta
+DT1009,449.08,Denver International Airport,General Edward Lawrence Logan International Airport,45/20/17/12/2013,240,Delta
+DT1010,350.55,Phoenix Sky Harbor International Airport,Mc Carran International Airport,30/15/16/12/2013,240,Delta
+DT1011,199.99,Los Angeles International Airport,John F Kennedy International Airport,15/08/15/12/2013,180,Delta
+DT1012,250.88,Phoenix Sky Harbor International Airport,Miami International Airport,30/15/16/12/2013,300,Delta
+DT1013,299.99,San Francisco International Airport,Honolulu International Airport,00/01/18/12/2013,300,Delta
+DT1014,350.55,San Diego International Airport,Denver International Airport,15/08/15/12/2013,240,Delta
+DT1015,400.01,Miami International Airport,Chicago O'Hare International Airport,30/15/16/12/2013,60,Delta
+DT1016,449.08,Tucson International Airport,General Edward Lawrence Logan International Airport,15/08/15/12/2013,300,Delta
+DT1017,449.08,Los Angeles International Airport,Mc Carran International Airport,30/15/16/12/2013,180,Delta
+DT1018,350.55,Whiteman Airport,John F Kennedy International Airport,45/20/17/12/2013,300,Delta
+DT1019,199.99,San Francisco International Airport,Miami International Airport,30/15/16/12/2013,240,Delta
+DT1020,250.88,San Diego International Airport,San Francisco International Airport,15/08/15/12/2013,240,Delta
+UA2001,299.99,Miami International Airport,Tucson International Airport,30/15/16/12/2013,240,USAirway
+UA2002,350.55,Phoenix Sky Harbor International Airport,Los Angeles International Airport,30/15/16/12/2013,180,USAirway
+UA2003,449.08,Denver International Airport,Whiteman Airport,45/20/17/12/2013,120,USAirway
+UA2004,449.08,Tucson International Airport,San Francisco International Airport,00/01/18/12/2013,60,USAirway
+UA2005,350.55,Los Angeles International Airport,San Diego International Airport,15/08/15/12/2013,60,USAirway
+UA2006,199.99,Whiteman Airport,Albany International Airport,30/15/16/12/2013,300,USAirway
+UA2007,250.88,San Francisco International Airport,Chicago Midway International Airport,45/20/17/12/2013,240,USAirway
+UA2008,299.99,Phoenix Sky Harbor International Airport,Chicago O'Hare International Airport,00/01/18/12/2013,180,USAirway
+UA2009,350.55,Miami International Airport,General Edward Lawrence Logan International Airport,15/08/15/12/2013,120,USAirway
+UA2010,199.99,Tucson International Airport,Mc Carran International Airport,00/01/18/12/2013,60,USAirway
+UA2011,250.88,Los Angeles International Airport,John F Kennedy International Airport,15/08/15/12/2013,300,USAirway
+UA2012,449.08,Whiteman Airport,Miami International Airport,30/15/16/12/2013,240,USAirway
+UA2013,350.55,San Francisco International Airport,Honolulu International Airport,45/20/17/12/2013,180,USAirway
+UA2014,199.99,San Diego International Airport,Denver International Airport,00/01/18/12/2013,120,USAirway
+UA2015,250.88,Albany International Airport,Mc Carran International Airport,15/08/15/12/2013,300,USAirway
+UA2016,299.99,Chicago Midway International Airport,John F Kennedy International Airport,30/15/16/12/2013,240,USAirway
+UA2017,350.55,Chicago O'Hare International Airport,Miami International Airport,15/08/15/12/2013,180,USAirway
+UA2018,199.99,General Edward Lawrence Logan International Airport,Albany International Airport,30/15/16/12/2013,120,USAirway
+UA2019,250.88,Mc Carran International Airport,Chicago Midway International Airport,45/20/17/12/2013,300,USAirway
+UA2020,299.99,Phoenix Sky Harbor International Airport,Los Angeles International Airport,00/01/18/12/2013,240,USAirway
+SW3001,350.55,Miami International Airport,Tucson International Airport,15/08/15/12/2013,240,SouthWest
+SW3002,350.55,Honolulu International Airport,Los Angeles International Airport,30/15/16/12/2013,180,SouthWest
+SW3003,449.08,Denver International Airport,Whiteman Airport,00/01/18/12/2013,120,SouthWest
+SW3004,350.55,Tucson International Airport,San Francisco International Airport,15/08/15/12/2013,60,SouthWest
+SW3005,199.99,Los Angeles International Airport,San Diego International Airport,30/15/16/12/2013,120,SouthWest
+SW3006,250.88,Whiteman Airport,Albany International Airport,15/08/15/12/2013,60,SouthWest
+SW3007,299.99,Phoenix Sky Harbor International Airport,Chicago Midway International Airport,30/15/16/12/2013,60,SouthWest
+SW3008,350.55,Tucson International Airport,Chicago O'Hare International Airport,45/20/17/12/2013,300,SouthWest
+SW3009,199.99,Los Angeles International Airport,General Edward Lawrence Logan International Airport,30/15/16/12/2013,240,SouthWest
+SW3010,250.88,Whiteman Airport,Mc Carran International Airport,15/08/15/12/2013,240,SouthWest
+SW3011,299.99,San Francisco International Airport,John F Kennedy International Airport,30/15/16/12/2013,180,SouthWest
+SW3012,199.99,San Diego International Airport,Miami International Airport,45/20/17/12/2013,120,SouthWest
+SW3013,299.99,Miami International Airport,Honolulu International Airport,00/01/18/12/2013,60,SouthWest
+SW3014,449.08,Tucson International Airport,Denver International Airport,15/08/15/12/2013,120,SouthWest
+SW3015,299.99,Los Angeles International Airport,Tucson International Airport,30/15/16/12/2013,60,SouthWest
+SW3016,350.55,Whiteman Airport,Los Angeles International Airport,15/08/15/12/2013,60,SouthWest
+SW3017,299.99,San Francisco International Airport,Whiteman Airport,30/15/16/12/2013,300,SouthWest
+SW3018,350.55,San Diego International Airport,San Francisco International Airport,45/20/17/12/2013,240,SouthWest
+SW3019,400.01,Albany International Airport,San Diego International Airport,45/20/17/12/2013,180,SouthWest
+SW3020,449.08,Chicago Midway International Airport,Miami International Airport,00/01/18/12/2013,120,SouthWest
