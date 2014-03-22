@@ -3,6 +3,7 @@
 #include "ListCreation.h"
 #include "FlightNode.h"
 #include "HubNode.h"
+#include "Traversal.h"
 
 int main()
 {
