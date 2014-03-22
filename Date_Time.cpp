@@ -3,6 +3,7 @@
 //Author:  Andrew Farber
 
 //Import Lib
+#include "Date_Time.h"
 #include <iostream>
 #include <string.h>
 #include <string> 
@@ -11,17 +12,6 @@
 #pragma warning(disable: 4996)
 
 using namespace std;
-
-class Date_Time{
-public:
-	Date_Time();				// Default constructor (initializes all values to 0)
-	Date_Time(string dateText); // Constructor (parses string input to time and date information)
-	void AddMinutes(int min);   // Increases the minutes instance variable (used for calculating delays)
-	string ToString();			// Prints date to console 
-private:  
-	int minutes, hours;  		// Time variables
-	int day, month, year;		// Date variables
-};
 
 //Default Constructor
 Date_Time::Date_Time(){minutes = hours = day = month = year = 0;}

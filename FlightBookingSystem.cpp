@@ -1,6 +1,8 @@
 #include <iostream>
 #include <string>
 #include "ListCreation.h"
+#include "FlightNode.h"
+#include "HubNode.h"
 
 int main()
 {
