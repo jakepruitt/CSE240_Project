@@ -2,6 +2,7 @@
 #include "HubNode.h"
 #include "FlightNode.h"
 #include "Date_Time.h"
+#include "Traversal.h"
 #include <string>
 
 using namespace std;
