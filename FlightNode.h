@@ -5,6 +5,10 @@
 #include "HubNode.h"
 #include "Date_Time.h"
 
+using namespace std;
+
+class HubNode;
+
 class FlightNode{
 	public:
 		string flightNumber;
@@ -12,9 +16,9 @@ class FlightNode{
 		string flightCompany;
 		Date_Time departure;
 		int duration;
-		HubNode* source;
-		HubNode* destination;
-		FlightNode* next;
+		HubNode *source;
+		HubNode *destination;
+		FlightNode *next;
 };
 
 #endif

@@ -43,7 +43,7 @@ Date_Time::Date_Time(string dateText){
 	try{
 		if(min < 0 || min > 59) 	throw 1;
 		if(hr < 0 || hr > 23) 		throw 2; 	
-		if(dy < 0 || day > 31) 		throw 3;
+		if(dy < 1 || day > 31) 		throw 3;
 		if(mnth < 1 || mnth > 12) 	throw 4;
 		if(yr_txt.length() != 4) 	throw 5;
 	 }

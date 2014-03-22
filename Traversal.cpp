@@ -1,22 +1,39 @@
 #include <iostream>
 #include <string>
+#include "HubNode.h"
+#include "FlightNode.h"
+#include "Date_Time.h"
 
-public void deallocation(int *head)
+void deallocateHubs(HubNode *head)
 {
 	if(head != NULL)
 	{
-		deallocation(head->next);
+		deallocateHubs(head->next);
 		delete head;
 	}
-}
+};
 
-public void printFlights(int *hub)
+void deallocateFlights(FlightNode *head)
 {
+	if(head != NULL)
+	{
+		deallocateFlights(head->next);
+		delete head;
+	}
+};
+
+void printFlights(HubNode *hub)
+{
+	std::string hub_name;
+	std::string hub_location;
+	FlightNode *flight;
+	std::string flight_number;
+
 	while(hub->next != NULL)
 	{
-		std::string hub_name = hub->name;
-		std::string hub_location = hub->location
-		int *flight = hub->headflight;
+		hub_name = hub->name;
+		hub_location = hub->location;
+		flight = hub->headFlights;
 		std::cout<<hub_name<<std::endl;
 		std::cout<<hub_location<<std::endl;
 		
@@ -24,18 +41,18 @@ public void printFlights(int *hub)
 		{
 			std::string Destination = flight->destination->name;
 			flight_number = flight->flightNumber;
-			Date_Time date_time = flight->Date_Time;
+			Date_Time date_time = flight->departure;
 			
 			std::cout<<Destination<<std::endl;
-			std::cout<<flight_number<<std::endl:
-			ToString(date_time);
+			std::cout<<flight_number<<std::endl;
+			date_time.ToString();
 		}
 	}
-}
+};
 
-public int searchHub(std::string hub_name, int *hub)
+HubNode* searchHub(std::string hub_name, HubNode *hub)
 {
-	while(hub-> != NULL)
+	while(hub->next != NULL)
 	{
 		if((hub->name).compare(hub_name))
 		{
@@ -44,4 +61,5 @@ public int searchHub(std::string hub_name, int *hub)
 		
 		hub = hub->next;
 	}
-}
+	return NULL;
+};
