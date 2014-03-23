@@ -64,25 +64,25 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\Date_Time.cpp" />
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\FlightBookingSystem.cpp" />
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\FlightNode.cpp" />
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\HubNode.cpp" />
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\IO.cpp" />
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\ListCreation.cpp" />
-    <ClCompile Include="..\..\..\..\GitHub\CSE240_Project\Traversal.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="..\..\..\..\GitHub\CSE240_Project\Date_Time.h" />
-    <ClInclude Include="..\..\..\..\GitHub\CSE240_Project\FlightNode.h" />
-    <ClInclude Include="..\..\..\..\GitHub\CSE240_Project\HubNode.h" />
-    <ClInclude Include="..\..\..\..\GitHub\CSE240_Project\IO.h" />
-    <ClInclude Include="..\..\..\..\GitHub\CSE240_Project\ListCreation.h" />
-    <ClInclude Include="..\..\..\..\GitHub\CSE240_Project\Traversal.h" />
+    <ClCompile Include="..\..\Date_Time.cpp" />
+    <ClCompile Include="..\..\FlightBookingSystem.cpp" />
+    <ClCompile Include="..\..\FlightNode.cpp" />
+    <ClCompile Include="..\..\HubNode.cpp" />
+    <ClCompile Include="..\..\IO.cpp" />
+    <ClCompile Include="..\..\ListCreation.cpp" />
+    <ClCompile Include="..\..\Traversal.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\GitHub\CSE240_Project\Flight.csv" />
     <None Include="..\..\..\..\GitHub\CSE240_Project\Hub.csv" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\Date_Time.h" />
+    <ClInclude Include="..\..\FlightNode.h" />
+    <ClInclude Include="..\..\HubNode.h" />
+    <ClInclude Include="..\..\IO.h" />
+    <ClInclude Include="..\..\ListCreation.h" />
+    <ClInclude Include="..\..\Traversal.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

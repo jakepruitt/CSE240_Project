@@ -55,9 +55,6 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 	newFlightNode->source = sourceHub;
 	newFlightNode->destination = destinationHub;
 
-	newFlightNode->next = sourceHub->headFlights;
-	sourceHub->headFlights = newFlightNode;
-
 	if (sourceHub->headFlights == NULL) {
 		sourceHub->headFlights = newFlightNode;
 	} else {

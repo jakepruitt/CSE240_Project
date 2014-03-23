@@ -77,6 +77,9 @@ string Date_Time::ToString(){
 	string yrs 		= static_cast<ostringstream*>( &(ostringstream() << year) )->str();
 	string hrs 		= static_cast<ostringstream*>( &(ostringstream() << hours) )->str();
 	string mins 	= static_cast<ostringstream*>( &(ostringstream() << minutes) )->str();
+	if (minutes < 10) {
+		mins = "0" + mins;
+	}
 	string output = mnths + "/" + dys + "/" + yrs + "   " + hrs + ":" + mins;
 	return output;
 }

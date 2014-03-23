@@ -34,8 +34,8 @@ void printFlights(HubNode *hub)
 		hub_name = hub->name;
 		hub_location = hub->location;
 		flight = hub->headFlights;
-		std::cout<<hub_name<<std::endl;
-		std::cout<<hub_location<<std::endl;
+		std::cout<<"\n\n"<<hub_name<<" - "<<hub_location<<std::endl;
+		std::cout<<"=================================================\n\nDepartures:\n"<<std::endl;
 		
 		while(flight->next != NULL)
 		{
@@ -45,16 +45,18 @@ void printFlights(HubNode *hub)
 			
 			std::cout<<Destination<<std::endl;
 			std::cout<<flight_number<<std::endl;
-			date_time.ToString();
+			std::cout<<date_time.ToString()<<std::endl<<std::endl;
+			flight = flight->next;
 		}
+		hub = hub->next;
 	}
 };
 
 HubNode* searchHub(std::string hub_name, HubNode *hub)
 {
-	while(hub->next != NULL)
+	while(hub != NULL)
 	{
-		if((hub->name).compare(hub_name))
+		if((hub->name).compare(hub_name) == 0)
 		{
 			return hub;
 		}
