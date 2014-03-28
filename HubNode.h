@@ -8,12 +8,12 @@ using namespace std;
 
 class FlightNode;
 
-class HubNode{
+class HubNode{ // May want to consider making some var private
 	public:
 		string name;
 		string location;
 		HubNode *next;
-		FlightNode* headFlights;
+		FlightNode* headFlights;  
 		virtual ~HubNode();
 };
 

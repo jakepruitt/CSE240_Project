@@ -5,8 +5,11 @@
 #include <fstream>	
 #include <sstream>
 
-void importHub();
-void importFlight();
+//  Load hub csv and calls addHub(...) to create hub linked list
+void importHub();	
+
+// Load flight csv and calls addFlights(...) to create flight linked list
+void importFlight();	
 
 
 #endif

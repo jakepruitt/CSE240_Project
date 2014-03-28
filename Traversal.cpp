@@ -22,46 +22,62 @@ void deallocateFlights(FlightNode *head)
 	}
 };
 
-void printFlights(HubNode *hub)
-{
-	std::string hub_name;
-	std::string hub_location;
-	FlightNode *flight;
-	std::string flight_number;
 
-	while(hub->next != NULL)
+//NOT WORKING NOT PRINTING TOP OF LIST - If debug the top of list starts to print but later gets removed (not sure why this happens)
+void printFlights(HubNode *headHub)
+{
+	
+	//Error:  passed by address, when moving hub previously the values
+	// of headHub was changed (i.e. the address)
+	
+	// Created local HubNode ptr variable (maybe rename tempHub)
+	HubNode* hub = headHub;
+
+	while(hub != NULL)  //changed from hub->next != NULL, does not print entire list
 	{
-		hub_name = hub->name;
-		hub_location = hub->location;
-		flight = hub->headFlights;
-		std::cout<<"\n\n"<<hub_name<<" - "<<hub_location<<std::endl;
-		std::cout<<"=================================================\n\nDepartures:\n"<<std::endl;
+
+		std::string hub_name = hub->name;
+		std::string hub_location = hub->location;
+		FlightNode *flight = hub->headFlights;  // made local
+
+		std::cout<<"\n\n"<< hub_name << " - " << hub_location<< endl;
+		std::cout<<"=================================================\n\nDepartures:\n"<< endl;
 		
-		while(flight->next != NULL)
+		while(flight != NULL)	// same change as first while loop
 		{
+
 			std::string Destination = flight->destination->name;
-			flight_number = flight->flightNumber;
-			Date_Time date_time = flight->departure;
+			std::string flight_number = flight->flightNumber;
+			Date_Time *date_time = flight->departure;
 			
 			std::cout<<Destination<<std::endl;
 			std::cout<<flight_number<<std::endl;
-			std::cout<<date_time.ToString()<<std::endl<<std::endl;
+			std::cout<<date_time->ToString()<<std::endl<<std::endl;
 			flight = flight->next;
+
 		}
+
 		hub = hub->next;
+
 	}
 };
 
 HubNode* searchHub(std::string hub_name, HubNode *hub)
 {
-	while(hub != NULL)
+	//Error:  passed by address, when moving hub prev the value
+	// of headHub was changed (i.e. the address)
+	
+	// Created local HubNode ptr variable 
+	HubNode* tempHub = hub;
+
+	while(tempHub != NULL)
 	{
-		if((hub->name).compare(hub_name) == 0)
+		if((tempHub->name).compare(hub_name) == 0)
 		{
-			return hub;
+			return tempHub;
 		}
 		
-		hub = hub->next;
+		tempHub = tempHub->next;
 	}
 	return NULL;
 };

@@ -9,7 +9,8 @@ using namespace std;
 
 // Inserts hub into LinkedList based on string parameters for Hub attributes
 void addHub(string airport, string city) {
-	HubNode *newHubNode = new HubNode();
+	
+	HubNode *newHubNode = new HubNode();  //NOTE!: We do not have a contstrutor!
 
 	// Use arguements to create new HubNode
 	newHubNode->name = airport;
@@ -17,35 +18,46 @@ void addHub(string airport, string city) {
 	newHubNode->next = NULL;
 	newHubNode->headFlights = NULL;
 
-	// Insert new HubNode into linkedlist
+	// Insert new HubNode into linkedlist 
 	if (headHub == NULL) {
-		headHub = newHubNode;
+		headHub = newHubNode;				
 	} else {
-		newHubNode->next = headHub->next;
-		headHub->next = newHubNode;
+		newHubNode->next = headHub;
+		headHub = newHubNode;
 	}
+
+	// Insert new HubNode into linkedlist
+	//if (headHub == NULL) {
+	//	headHub = newHubNode;				
+	//} else {
+	//	newHubNode->next = headHub->next;	// headHub is a pointer (i.e. an address) and does not have a next
+	//	headHub->next = newHubNode;			
+	//}
+
 };
 
 // Inserts flight into LinkedList based on string parameters for Flight attributes
 void addFlight(string FlightNumber, double price, string departure, int duration, string sourceAirportName, string destinationAirportName, string company) {
-	FlightNode *newFlightNode;
+	
+	FlightNode *newFlightNode;					// Ptr to base class
 	if (company.compare("USAirway") == 0) {
-		newFlightNode = new FlightUSAirway();
+		newFlightNode = new FlightUSAirway();	// Inhertiance - We do not have a constructor
 	} else if (company.compare("Delta") == 0) {
-		newFlightNode = new FlightDelta();
+		newFlightNode = new FlightDelta();		// Inhertiance - We do not have a constructor
 	} else {
-		newFlightNode = new FlightSouthWest();
+		newFlightNode = new FlightSouthWest();	// Inhertiance - We do not have a  constructor
 	}
-	string flightCompany = company;
+	
 
-	Date_Time departureTime = Date_Time(departure);
-	HubNode* sourceHub = searchHub(sourceAirportName, headHub);
-	HubNode* destinationHub = searchHub(destinationAirportName, headHub);
+	Date_Time *departureTime = new Date_Time(departure);		// createe pointer to date_time class and use the ptr to access the date and time values
+	HubNode* sourceHub = searchHub(sourceAirportName, headHub);  // fixed searchHub error (see function for more details)
+	HubNode* destinationHub = searchHub(destinationAirportName, headHub);  // see above 
 
+	newFlightNode->flightCompany = company;
 	newFlightNode->flightNumber = FlightNumber;
 	newFlightNode->price = price;
-	newFlightNode->departure = departureTime;
-	newFlightNode->duration = duration;
+	newFlightNode->departure = departureTime;  //now a ptr
+	newFlightNode->duration = duration;		
 	newFlightNode->source = sourceHub;
 	newFlightNode->destination = destinationHub;
 

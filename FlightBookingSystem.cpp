@@ -6,16 +6,14 @@
 #include "HubNode.h"
 #include "Traversal.h"
 
-
-HubNode *headHub = NULL;
+// Global Variables
+HubNode *headHub = NULL;	// Global pointer to start of HubNode linked list
 
 int main()
 {
-	importHub();
-	importFlight();
-
-	printFlights(headHub);
-
-	deallocateHubs(headHub);
+	importHub();				//  Load hub csv and creates hub linked list
+	importFlight();				//	Load flights csv and creates flight linked list
+	printFlights(headHub);		//  Prints flights (debug function)
+	deallocateHubs(headHub);	//  Frees heap memory 
 	return 0;
 }
