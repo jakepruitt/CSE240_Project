@@ -66,7 +66,17 @@ Date_Time::Date_Time(string dateText){
 }
 
 //AddMinutes:  increases the number of minutes instance variable
-void Date_Time::AddMinutes(int min){ minutes = minutes + min;}
+void Date_Time::AddMinutes(int min){ 
+	int increaseInHours;
+	if(min >= 60){  //Increase hour 
+		increaseInHours = min / 60;
+		hours += increaseInHours;
+		minutes = min % 60;
+	}
+	else{
+		minutes = minutes + min;
+	}
+}
 
 //Prints date and time to console
 string Date_Time::ToString(){

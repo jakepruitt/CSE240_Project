@@ -19,6 +19,28 @@ class FlightNode{
 		HubNode *source;
 		HubNode *destination;
 		FlightNode *next;
+		virtual float getBaggageFees(int numBags);
+		virtual int getDelay();
 };
 
+class FlightSouthWest : virtual public FlightNode{
+	public:
+		float getBaggageFees(int numBags);
+		int getDelay();
+};
+
+class FlightDelta : virtual public FlightNode{
+	public:
+		float getBaggageFees(int numBags);
+		int getDelay();
+};
+
+class FlightUSAirway : virtual public FlightNode{
+	public:
+		float getBaggageFees(int numBags);
+		int getDelay();
+};
+
+
 #endif
+

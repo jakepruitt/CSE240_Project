@@ -28,21 +28,15 @@ void addHub(string airport, string city) {
 
 // Inserts flight into LinkedList based on string parameters for Flight attributes
 void addFlight(string FlightNumber, double price, string departure, int duration, string sourceAirportName, string destinationAirportName, string company) {
-	FlightNode *newFlightNode = new FlightNode();
+	FlightNode *newFlightNode;
+	if (company.compare("USAirway") == 0) {
+		newFlightNode = new FlightUSAirway();
+	} else if (company.compare("Delta") == 0) {
+		newFlightNode = new FlightDelta();
+	} else {
+		newFlightNode = new FlightSouthWest();
+	}
 	string flightCompany = company;
-
-	/*string companyInitials = FlightNumber.substr(0,2);
-	switch (companyInitials) {
-		case 'UA':
-			flightCompany = "United Airlines";
-		case 'SW':
-			flightCompany = "Southwest";
-		case 'AA':
-			flightCompany = "American Airlines";
-		default:
-			flightCompany = "";
-	}*/
-
 
 	Date_Time departureTime = Date_Time(departure);
 	HubNode* sourceHub = searchHub(sourceAirportName, headHub);
@@ -50,7 +44,7 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 
 	newFlightNode->flightNumber = FlightNumber;
 	newFlightNode->price = price;
-	newFlightNode->departure = departure;
+	newFlightNode->departure = departureTime;
 	newFlightNode->duration = duration;
 	newFlightNode->source = sourceHub;
 	newFlightNode->destination = destinationHub;
