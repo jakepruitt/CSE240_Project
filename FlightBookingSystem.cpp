@@ -5,6 +5,7 @@
 #include "FlightNode.h"
 #include "HubNode.h"
 #include "Traversal.h"
+#include "Search.h"
 
 // Global Variables
 HubNode *headHub = NULL;	// Global pointer to start of HubNode linked list
