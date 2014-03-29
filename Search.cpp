@@ -7,8 +7,19 @@
 
 using namespace std;
 /* Returns the price of the flights and baggage.  Returns -1 if there are no flights */
-float FlightPlan::calculateCost() {
-	return 0;
+float FlightPlan::calculateCost(int numBags) {
+	float total = 0;
+	if (path[0] == NULL)
+	{
+		return -1;
+	}
+
+	for (int i = 0; i < 2; i++)
+	{
+		total += (float) path[i]->price + path[i]->getBaggageFees(numBags);
+	}
+
+	return total;
 }
 
 /* Returns the arrival time of flight.  Returns 0 if there are no flights */
@@ -35,7 +46,7 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 	FlightPlan* tracking = lowest;
 
 	if (cheapOrShort.compare("cheapest") == 0) {
-		searchForCheapest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate);
+		searchForCheapest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate, bags);
 	} else {
 		searchForShortest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate);
 	}
@@ -57,11 +68,11 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 		FlightPlan* tracking => a pointer to the FlightPlan holding the current path
 		int depth => an integer tracking the current number of flights in the tracking path
 */
-void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate) {
+void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate, int bags) {
 	if (tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
 		/* If the tracking FlightPlan ends at our desired location, we need to check if it is cheaper than
 			the lowest flight plan, and then return. */
-		if (lowest->calculateCost() < 0 || tracking->calculateCost() < lowest->calculateCost()) {
+		if (lowest->calculateCost(bags) < 0 || tracking->calculateCost(bags) < lowest->calculateCost(bags)) {
 			// If the tracking FlightPlan is cheaper than the lowest FlightPlan, transfer all data to lowest
 			for (int i = 0; i < 2; i++) {
 				lowest->path[i] = tracking->path[i];
@@ -87,7 +98,7 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 			tracking->startTime = tempFlight->departure;
 			tracking->startTime->AddMinutes(tempFlight->getDelay());
 
-			searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
+			searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate, bags);
 
 			tempFlight = tempFlight->next;
 		}
@@ -131,7 +142,7 @@ void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, 
 			tracking->path[depth] = tempFlight;
 			tracking->endHub = tempFlight->destination;
 
-			searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
+			searchForShortest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
 
 			tempFlight = tempFlight->next;
 		}
