@@ -4,6 +4,7 @@
 #include "FlightNode.h"
 #include "HubNode.h"
 #include "Traversal.h"
+#include <iostream>
 
 using namespace std;
 /* Returns the price of the flights and baggage.  Returns -1 if there are no flights */
@@ -34,7 +35,14 @@ float FlightPlan::calculateDuration() {
 
 /* Output the  */
 void FlightPlan::printItinerary() {
-	return;
+	int i = 0;  //Iterator
+	while(path[i] != NULL){
+		std::cout <<  "\n" << endl;
+		std::cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t" << "\t" << path[i]->source->location << "\t" << path[i]->departure->ToString() << endl;
+		std::cout << "\t\t" << path[i]->destination->location << "\t" << path[i]->departure->ToString();  //Need to calculate arrival time
+		std::cout << "\t\t" << "$" << (path[i]->price + path[i]->getBaggageFees());
+
+	}
 }
 
 /* Handler function to take in the user's input from the command line and call the appropriate recursive search algorthm.  
