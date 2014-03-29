@@ -15,7 +15,7 @@ public:
 	HubNode *endHub;
 	FlightNode *path[2];
 
-	float calculateCost();
+	float calculateCost(int numBags);
 	Date_Time* calculateArrivalTime();
 	float calculateDuration();
 	void printItinerary();
@@ -23,7 +23,7 @@ public:
 
 void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destination, int bags, string cheapOrShort);
 
-void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate);
+void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate, int bags);
 void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate);
 
 #endif
