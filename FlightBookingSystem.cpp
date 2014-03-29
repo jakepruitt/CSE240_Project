@@ -15,5 +15,6 @@ int main()
 	importFlight();				//	Load flights csv and creates flight linked list
 	printFlights(headHub);		//  Prints flights (debug function)
 	deallocateHubs(headHub);	//  Frees heap memory 
+	headHub = NULL;
 	return 0;
 }

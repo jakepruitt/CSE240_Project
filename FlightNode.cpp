@@ -2,6 +2,10 @@
 
 //NOTE!!!:  We do not use a constructor when creating FlightNodes!
 
+FlightNode::~FlightNode() {
+	delete departure;
+}
+
 float FlightNode::getBaggageFees(int numBags) { return 0; };
 int FlightNode::getDelay() { return 0; };
 
@@ -32,9 +36,6 @@ int FlightUSAirway::getDelay() {
 	return 0;  // No delay
 };
 
-FlightNode::~FlightNode() {
-	delete departure;  
-};
 
 
 
