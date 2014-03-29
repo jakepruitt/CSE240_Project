@@ -10,7 +10,7 @@ using namespace std;
 // Inserts hub into LinkedList based on string parameters for Hub attributes
 void addHub(string airport, string city) {
 	
-	HubNode *newHubNode = new HubNode();  //NOTE!: We do not have a contstrutor!
+	HubNode *newHubNode = new HubNode();  //NOTE!: We do not have a construtor!
 
 	// Use arguements to create new HubNode
 	newHubNode->name = airport;
@@ -49,7 +49,7 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 	}
 	
 
-	Date_Time *departureTime = new Date_Time(departure);		// createe pointer to date_time class and use the ptr to access the date and time values
+	Date_Time *departureTime = new Date_Time(departure);		// create pointer to date_time class and use the ptr to access the date and time values
 	HubNode* sourceHub = searchHub(sourceAirportName, headHub);  // fixed searchHub error (see function for more details)
 	HubNode* destinationHub = searchHub(destinationAirportName, headHub);  // see above 
 
