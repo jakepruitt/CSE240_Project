@@ -10,20 +10,20 @@ class FlightPlan
 public:
 
 	int bags;
-	Date_Time startTime;
+	Date_Time *startTime;
 	HubNode *startHub;
 	HubNode *endHub;
 	FlightNode *path[2];
 
 	float calculateCost();
-	float calculateArrivalTime();
+	Date_Time* calculateArrivalTime();
 	float calculateDuration();
 	void printItinerary();
 };
 
-void flightSearchController(Date_Time* startDate, Date_Time* endDate, string destination, int bags, string cheapOrShort);
+void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destination, int bags, string cheapOrShort);
 
-void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth);
-void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth);
+void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate);
+void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate);
 
 #endif
