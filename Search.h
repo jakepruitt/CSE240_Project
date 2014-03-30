@@ -17,7 +17,7 @@ public:
 
 	float calculateCost(int numBags);
 	Date_Time* calculateArrivalTime();
-	float calculateDuration();
+	int calculateDuration();
 	void printItinerary();
 };
 

@@ -25,12 +25,33 @@ float FlightPlan::calculateCost(int numBags) {
 
 /* Returns the arrival time of flight.  Returns 0 if there are no flights */
 Date_Time* FlightPlan::calculateArrivalTime() {
-	return 0;
+	Date_Time* arrival;
+
+	arrival = startTime;
+	arrival->AddMinutes(calculateDuration());
+
+	return arrival;
 }
 
 /* Returns the duration of the flight.  Returns -1 if there are no flights */
-float FlightPlan::calculateDuration() {
-	return 999;
+int FlightPlan::calculateDuration() {
+	if (path[0] == NULL)
+	{
+		return 999999;
+	}
+	
+	int totalDuration = 0;
+	
+	for (int i = 0; i < 2; i++)
+	{
+		if (path[i] != NULL)
+		{
+			totalDuration += path[i]->duration + path[i]->getDelay();
+		}
+	}
+
+
+	return totalDuration;
 }
 
 /* Output the  */
@@ -39,10 +60,12 @@ void FlightPlan::printItinerary() {
 	while(path[i] != NULL){
 		std::cout <<  "\n" << endl;
 		std::cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t" << "\t" << path[i]->source->location << "\t" << path[i]->departure->ToString() << endl;
-		std::cout << "\t\t" << path[i]->destination->location << "\t" << path[i]->departure->ToString();  //Need to calculate arrival time
-		std::cout << "\t\t" << "$" << (path[i]->price + path[i]->getBaggageFees());
-
+		std::cout << "\t\t" << path[i]->destination->location << "\t" << "Arrival Date time";  
+		std::cout << "\t\t" << "Price " <<endl;
+		std::cout << "\n"	<< endl;
 	}
+
+	std:: cout << "TOTAL PRICE" << endl;
 }
 
 /* Handler function to take in the user's input from the command line and call the appropriate recursive search algorthm.  
@@ -101,12 +124,16 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 		while (tempFlight != NULL) {
 			/* Iterates through all of the flights, adding the flight to the FlightPlan's path, and setting the
 				FlightPlan's endHub equal to the flight's destination. */
-			tracking->path[depth] = tempFlight;
-			tracking->endHub = tempFlight->destination;
-			tracking->startTime = tempFlight->departure;
-			tracking->startTime->AddMinutes(tempFlight->getDelay());
 
-			searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate, bags);
+			/* Conditional check to see if second flight starts after first. */
+			if (tracking->path[0] == NULL || timeBetween(tracking->calculateArrivalTime(), tempFlight->departure) >= 0 ) {
+				tracking->path[depth] = tempFlight;
+				tracking->endHub = tempFlight->destination;
+				tracking->startTime = tempFlight->departure;
+				tracking->startTime->AddMinutes(tempFlight->getDelay());
+				searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate, bags);
+			}
+
 
 			tempFlight = tempFlight->next;
 		}
