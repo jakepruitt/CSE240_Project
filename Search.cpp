@@ -72,6 +72,8 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 		searchForShortest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate);
 	}
 
+	lowest->startTime = lowest->path[0]->departure;
+
 	lowest->printItinerary();
 
 	// Create a confirmation UI function called here that will restart if the user does not want the ticket
@@ -90,7 +92,7 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 		int depth => an integer tracking the current number of flights in the tracking path
 */
 void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate, int bags) {
-	if (tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
+	if (tracking->endHub != NULL && tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
 		/* If the tracking FlightPlan ends at our desired location, we need to check if it is cheaper than
 			the lowest flight plan, and then return. */
 		if (lowest->calculateCost(bags) < 0 || tracking->calculateCost(bags) < lowest->calculateCost(bags)) {
@@ -141,7 +143,7 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 		int depth => an integer tracking the current number of flights in the tracking path
 */
 void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate) {
-	if (tracking->endHub->location.compare(destination) == 0) {
+	if (tracking->endHub != NULL && tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
 		/* If the tracking FlightPlan ends at our desired location, we need to check if it is cheaper than
 			the lowest flight plan, and then return. */
 		if (lowest->calculateDuration() < 0 || tracking->calculateDuration() < lowest->calculateDuration()) {
