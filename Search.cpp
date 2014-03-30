@@ -63,6 +63,7 @@ void FlightPlan::printItinerary() {
 		std::cout << "\t\t" << path[i]->destination->location << "\t" << "Arrival Date time";  
 		std::cout << "\t\t" << "Price " <<endl;
 		std::cout << "\n"	<< endl;
+		i = i + 1; 
 	}
 
 	std:: cout << "TOTAL PRICE" << endl;
