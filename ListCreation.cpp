@@ -50,6 +50,7 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 	
 
 	Date_Time *departureTime = new Date_Time(departure);		// create pointer to date_time class and use the ptr to access the date and time values
+	Date_Time *arrivalTime = new Date_Time(departure);
 	HubNode* sourceHub = searchHub(sourceAirportName, headHub);  // fixed searchHub error (see function for more details)
 	HubNode* destinationHub = searchHub(destinationAirportName, headHub);  // see above 
 
@@ -57,9 +58,11 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 	newFlightNode->flightNumber = FlightNumber;
 	newFlightNode->price = price;
 	newFlightNode->departure = departureTime;  //now a ptr
-	newFlightNode->duration = duration;		
+	newFlightNode->duration = duration;
 	newFlightNode->source = sourceHub;
 	newFlightNode->destination = destinationHub;
+	arrivalTime->AddMinutes(duration + newFlightNode->getDelay());
+	newFlightNode->arrival = arrivalTime;
 
 	if (sourceHub->headFlights == NULL) {
 		sourceHub->headFlights = newFlightNode;

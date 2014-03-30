@@ -15,6 +15,7 @@ class FlightNode{  // May want to consider making some var private
 		double price;
 		string flightCompany;
 		Date_Time *departure;
+		Date_Time *arrival;
 		int duration;
 		HubNode *source;
 		HubNode *destination;

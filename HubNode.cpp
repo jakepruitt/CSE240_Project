@@ -3,4 +3,5 @@
 
 HubNode::~HubNode() {
 	deallocateFlights(headFlights);
+	next = NULL;
 }

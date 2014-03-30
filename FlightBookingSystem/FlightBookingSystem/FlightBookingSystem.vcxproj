@@ -72,6 +72,7 @@
     <ClCompile Include="..\..\ListCreation.cpp" />
     <ClCompile Include="..\..\Search.cpp" />
     <ClCompile Include="..\..\Traversal.cpp" />
+    <ClCompile Include="..\..\UI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\..\GitHub\CSE240_Project\Flight.csv" />
