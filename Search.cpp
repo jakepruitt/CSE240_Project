@@ -88,23 +88,26 @@ void FlightPlan::printItinerary() {
 void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destination, int bags, string cheapOrShort) {
 	FlightPlan* lowest = new FlightPlan();
 	FlightPlan* tracking = new FlightPlan();
+	
 	tracking->bags = lowest->bags = bags;
 	tracking->startHub = lowest->startHub = searchHub("Phoenix Sky Harbor International Airport", headHub);
 	tracking->path[0] = lowest->path[0] = tracking->path[1] = lowest->path[1] = NULL;
 	tracking->startTime = startDate;
 
+	
 	if (cheapOrShort.compare("cheapest") == 0) {
 		searchForCheapest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate, bags);
 	} else {
 		searchForShortest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate);
 	}
-
+	
 	lowest->startTime = lowest->path[0]->departure;
 
 	lowest->printItinerary();
-
+	
 	// Create a confirmation UI function called here that will restart if the user does not want the ticket
-
+	tracking->startTime = NULL;
+	lowest->startTime = NULL;
 	delete lowest;
 	delete tracking;
 };

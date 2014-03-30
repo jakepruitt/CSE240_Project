@@ -17,13 +17,13 @@ int main()
 	importFlight();				//	Load flights csv and creates flight linked list
 
 	Date_Time* startTestDate = new Date_Time("00/00/16/12/2013");
-	Date_Time* endTestDate = new Date_Time("00/00/19/12/2013");
-
-	createFlightPlan(startTestDate, endTestDate, "Honolulu", 5, "shortest");
-
+	Date_Time* endTestDate = new Date_Time("59/23/18/12/2013");
+	
+	createFlightPlan(startTestDate, endTestDate, "Los Angeles", 3, "cheapest");
+	
 	delete startTestDate;
 	delete endTestDate;
-
+	
 	deallocateHubs(headHub);	//  Frees heap memory 
 	headHub = NULL;
 	return 0;
