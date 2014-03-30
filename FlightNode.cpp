@@ -4,6 +4,10 @@
 
 FlightNode::~FlightNode() {
 	delete departure;
+	delete arrival;
+	source = NULL;
+	destination = NULL;
+	next = NULL;
 }
 
 float FlightNode::getBaggageFees(int numBags) { return 0; };

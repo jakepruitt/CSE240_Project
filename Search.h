@@ -8,6 +8,8 @@
 class FlightPlan
 {
 public:
+	FlightPlan::FlightPlan();
+	FlightPlan::~FlightPlan();
 
 	int bags;
 	Date_Time *startTime;

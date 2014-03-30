@@ -7,6 +7,18 @@
 #include <iostream>
 
 using namespace std;
+
+/* Flight Plan Constructor */
+FlightPlan::FlightPlan() {
+	startTime = new Date_Time();
+};
+
+FlightPlan::~FlightPlan() {
+	delete startTime;
+	startHub = NULL;
+	endHub = NULL;
+};
+
 /* Returns the price of the flights and baggage.  Returns -1 if there are no flights */
 float FlightPlan::calculateCost(int numBags) {
 	float total = 0;
@@ -25,19 +37,21 @@ float FlightPlan::calculateCost(int numBags) {
 
 /* Returns the arrival time of flight.  Returns 0 if there are no flights */
 Date_Time* FlightPlan::calculateArrivalTime() {
-	Date_Time* arrival;
+	int i = 0;
+	Date_Time* flightPlanArrival = path[0]->arrival;
+	while (path[i] != NULL && i < 2) {
+		flightPlanArrival = path[i]->arrival;
+		i++;
+	}
 
-	arrival = startTime;
-	arrival->AddMinutes(calculateDuration());
-
-	return arrival;
+	return flightPlanArrival;
 }
 
 /* Returns the duration of the flight.  Returns -1 if there are no flights */
 int FlightPlan::calculateDuration() {
 	if (path[0] == NULL)
 	{
-		return 999999;
+		return 99999;
 	}
 	
 	int totalDuration = 0;
@@ -57,7 +71,7 @@ int FlightPlan::calculateDuration() {
 /* Output the  */
 void FlightPlan::printItinerary() {
 	int i = 0;  //Iterator
-	while(path[i] != NULL){
+	while(path[i] != NULL && i < 2){
 		std::cout <<  "\n" << endl;
 		std::cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t" << "\t" << path[i]->source->location << "\t" << path[i]->departure->ToString() << endl;
 		std::cout << "\t\t" << path[i]->destination->location << "\t" << "Arrival Date time";  
@@ -73,23 +87,29 @@ void FlightPlan::printItinerary() {
 	Ends with a call to a print function and deletes the FlightPlan used to find the lowest. */
 void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destination, int bags, string cheapOrShort) {
 	FlightPlan* lowest = new FlightPlan();
-	lowest->bags = bags;
-	lowest->startHub = searchHub("Phoenix Sky Harbor International Airport", headHub);
-	FlightPlan* tracking = lowest;
+	FlightPlan* tracking = new FlightPlan();
+	
+	tracking->bags = lowest->bags = bags;
+	tracking->startHub = lowest->startHub = searchHub("Phoenix Sky Harbor International Airport", headHub);
+	tracking->path[0] = lowest->path[0] = tracking->path[1] = lowest->path[1] = NULL;
+	tracking->startTime = startDate;
 
+	
 	if (cheapOrShort.compare("cheapest") == 0) {
 		searchForCheapest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate, bags);
 	} else {
 		searchForShortest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate);
 	}
+	
+	lowest->startTime = lowest->path[0]->departure;
 
 	lowest->printItinerary();
-
+	
 	// Create a confirmation UI function called here that will restart if the user does not want the ticket
-
-	tracking = NULL;
+	tracking->startTime = NULL;
+	lowest->startTime = NULL;
 	delete lowest;
-	return;
+	delete tracking;
 };
 
 /* Recursive function that searches for the cheapest flight.
@@ -101,7 +121,7 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 		int depth => an integer tracking the current number of flights in the tracking path
 */
 void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate, int bags) {
-	if (tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
+	if (tracking->endHub != NULL && tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
 		/* If the tracking FlightPlan ends at our desired location, we need to check if it is cheaper than
 			the lowest flight plan, and then return. */
 		if (lowest->calculateCost(bags) < 0 || tracking->calculateCost(bags) < lowest->calculateCost(bags)) {
@@ -109,7 +129,7 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 			for (int i = 0; i < 2; i++) {
 				lowest->path[i] = tracking->path[i];
 			}
-			lowest->startTime = tracking->startTime;
+			*lowest->startTime = *tracking->startTime;
 			lowest->endHub = tracking->endHub;
 		}
 
@@ -130,7 +150,7 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 			if (tracking->path[0] == NULL || timeBetween(tracking->calculateArrivalTime(), tempFlight->departure) >= 0 ) {
 				tracking->path[depth] = tempFlight;
 				tracking->endHub = tempFlight->destination;
-				tracking->startTime = tempFlight->departure;
+				*tracking->startTime = *tempFlight->departure;
 				tracking->startTime->AddMinutes(tempFlight->getDelay());
 				searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate, bags);
 			}
@@ -152,15 +172,17 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 		int depth => an integer tracking the current number of flights in the tracking path
 */
 void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, FlightPlan* tracking, int depth, Date_Time *startDate, Date_Time *endDate) {
-	if (tracking->endHub->location.compare(destination) == 0) {
+	if (tracking->endHub != NULL && tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
 		/* If the tracking FlightPlan ends at our desired location, we need to check if it is cheaper than
 			the lowest flight plan, and then return. */
-		if (lowest->calculateDuration() < 0 || tracking->calculateDuration() < lowest->calculateDuration()) {
+		int shortestTime = lowest->calculateDuration();
+		int trackingTime = tracking->calculateDuration();
+		if (shortestTime < 0 || trackingTime < shortestTime) {
 			// If the tracking FlightPlan is cheaper than the lowest FlightPlan, transfer all data to lowest
 			for (int i = 0; i < 2; i++) {
 				lowest->path[i] = tracking->path[i];
 			}
-			lowest->startTime = tracking->startTime;
+			*lowest->startTime = *tracking->startTime;
 		}
 
 		return;
@@ -175,10 +197,21 @@ void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, 
 		while (tempFlight != NULL) {
 			/* Iterates through all of the flights, adding the flight to the FlightPlan's path, and setting the
 				FlightPlan's endHub equal to the flight's destination. */
-			tracking->path[depth] = tempFlight;
-			tracking->endHub = tempFlight->destination;
+			if (depth == 0)
+			{
+				tracking->path[0] = NULL;
+				tracking->path[1] = NULL;
+			}
+			
+			/* Conditional check to see if second flight starts after first. */
+			if (tracking->path[0] == NULL || timeBetween(tracking->calculateArrivalTime(), tempFlight->departure) >= 0 ) {
+				tracking->path[depth] = tempFlight;
+				tracking->endHub = tempFlight->destination;
+				*tracking->startTime = *tempFlight->departure;
+				tracking->startTime->AddMinutes(tempFlight->getDelay());
+				searchForShortest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
+			}
 
-			searchForShortest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
 
 			tempFlight = tempFlight->next;
 		}

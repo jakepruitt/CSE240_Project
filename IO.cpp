@@ -27,8 +27,8 @@ void importHub() {
 	if(fileHandler.is_open()){
 		getline(fileHandler, ignore, '\n');
 		while(getline(fileHandler, airport, ',')){
-			getline(fileHandler, cityName, '\n');
-			//getline(fileHandler, ignore, '\n');  // deleted line
+			getline(fileHandler, cityName, '\r');
+			getline(fileHandler, ignore, '\n');  // deleted line
 			addHub(airport, cityName);
 		}
 		fileHandler.close();
@@ -69,8 +69,8 @@ void importFlight() {
 			getline(fileHandler, departureTime, ',');
 			getline(fileHandler, duration, ',');
 			istringstream(duration) >> duration_num;		//converts from string to int
-			getline(fileHandler, company, '\n');			
-			//getline(fileHandler, ignore, '\n'); delete
+			getline(fileHandler, company, '\r');			
+			getline(fileHandler, ignore, '\n');
 			addFlight(flightNumber, price_num, departureTime, duration_num, sourceAirport, destinationAirport, company);  
 		}
 		fileHandler.close();

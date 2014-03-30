@@ -6,6 +6,7 @@
 #include "HubNode.h"
 #include "Traversal.h"
 #include "Search.h"
+#include "Date_Time.h"
 
 // Global Variables
 HubNode *headHub = NULL;	// Global pointer to start of HubNode linked list
@@ -14,7 +15,15 @@ int main()
 {
 	importHub();				//  Load hub csv and creates hub linked list
 	importFlight();				//	Load flights csv and creates flight linked list
-	printFlights(headHub);		//  Prints flights (debug function)
+
+	Date_Time* startTestDate = new Date_Time("00/00/16/12/2013");
+	Date_Time* endTestDate = new Date_Time("59/23/18/12/2013");
+	
+	createFlightPlan(startTestDate, endTestDate, "Los Angeles", 3, "cheapest");
+	
+	delete startTestDate;
+	delete endTestDate;
+	
 	deallocateHubs(headHub);	//  Frees heap memory 
 	headHub = NULL;
 	return 0;

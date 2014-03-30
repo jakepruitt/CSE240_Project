@@ -16,7 +16,7 @@ using namespace std;
 //Default Constructor
 Date_Time::Date_Time(){minutes = hours = day = month = year = 0;}
 
-//Constructor
+//String based Constructor
 Date_Time::Date_Time(string dateText){
 
 	// Format of dateText (all have ## integer format)
@@ -82,6 +82,11 @@ void Date_Time::AddMinutes(int min){
 	}
 	else{
 		minutes = minutes + min;
+	}
+	if (hours > 23)
+	{
+		hours %= 24;
+		day++;
 	}
 
 }
