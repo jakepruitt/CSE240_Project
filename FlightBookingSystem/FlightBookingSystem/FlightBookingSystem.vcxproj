@@ -86,6 +86,7 @@
     <ClInclude Include="..\..\ListCreation.h" />
     <ClInclude Include="..\..\Search.h" />
     <ClInclude Include="..\..\Traversal.h" />
+    <ClInclude Include="..\..\UI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

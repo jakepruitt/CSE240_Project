@@ -27,7 +27,7 @@ float FlightPlan::calculateCost(int numBags) {
 		return -1;
 	}
 
-	for (int i = 0; i < 2; i++)
+	for (int i = 0; i < 2 && path[i] != NULL; i++)
 	{
 		total += (float) path[i]->price + path[i]->getBaggageFees(numBags);
 	}
@@ -71,16 +71,23 @@ int FlightPlan::calculateDuration() {
 /* Output the  */
 void FlightPlan::printItinerary() {
 	int i = 0;  //Iterator
+	if (path[0] == NULL)
+	{
+		cout << "Sorry, no flights could be found based on those parameters.  Please try different dates or a different location." << endl;
+	}
+
 	while(path[i] != NULL && i < 2){
-		std::cout <<  "\n" << endl;
-		std::cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t" << "\t" << path[i]->source->location << "\t" << path[i]->departure->ToString() << endl;
-		std::cout << "\t\t" << path[i]->destination->location << "\t" << "Arrival Date time";  
-		std::cout << "\t\t" << "Price " <<endl;
-		std::cout << "\n"	<< endl;
+		cout << "\n" << endl;
+		cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t\t" << path[i]->source->location << " \t" << path[i]->departure->ToString() << endl;
+		cout << "\t\t\t\t" << path[i]->destination->location << " \t" << calculateArrivalTime()->ToString() << endl << endl;  
+		cout << "\t\t\t\t" << "PRICE: " << "\t\t$" << path[i]->price << " (ticket)" << endl;
+		cout << "\t\t\t\t\t       + $" << path[i]->getBaggageFees(bags) << "    (baggage)" << endl;
+		cout << "\n"	<< endl;
 		i = i + 1; 
 	}
 
-	std:: cout << "TOTAL PRICE" << endl;
+	cout << "NUMBER OF BAGS: " << bags << endl; 
+	cout << "TOTAL PRICE:    $" << calculateCost(bags) << endl;
 }
 
 /* Handler function to take in the user's input from the command line and call the appropriate recursive search algorthm.  
@@ -124,7 +131,9 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 	if (tracking->endHub != NULL && tracking->endHub->location.compare(destination) == 0 && timeBetween(startDate, tracking->startTime) >= 0 && timeBetween(tracking->calculateArrivalTime(), endDate) >=0 ) {
 		/* If the tracking FlightPlan ends at our desired location, we need to check if it is cheaper than
 			the lowest flight plan, and then return. */
-		if (lowest->calculateCost(bags) < 0 || tracking->calculateCost(bags) < lowest->calculateCost(bags)) {
+		float cheapestCost = lowest->calculateCost(bags);
+		float trackingCost = tracking->calculateCost(bags);
+		if (cheapestCost < 0 || trackingCost < cheapestCost) {
 			// If the tracking FlightPlan is cheaper than the lowest FlightPlan, transfer all data to lowest
 			for (int i = 0; i < 2; i++) {
 				lowest->path[i] = tracking->path[i];
@@ -145,14 +154,19 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 		while (tempFlight != NULL) {
 			/* Iterates through all of the flights, adding the flight to the FlightPlan's path, and setting the
 				FlightPlan's endHub equal to the flight's destination. */
-
+			if (depth == 0)
+			{
+				tracking->path[0] = NULL;
+				tracking->path[1] = NULL;
+			}
+			
 			/* Conditional check to see if second flight starts after first. */
 			if (tracking->path[0] == NULL || timeBetween(tracking->calculateArrivalTime(), tempFlight->departure) >= 0 ) {
 				tracking->path[depth] = tempFlight;
 				tracking->endHub = tempFlight->destination;
 				*tracking->startTime = *tempFlight->departure;
 				tracking->startTime->AddMinutes(tempFlight->getDelay());
-				searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate, bags);
+				searchForShortest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
 			}
 
 
@@ -183,6 +197,7 @@ void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, 
 				lowest->path[i] = tracking->path[i];
 			}
 			*lowest->startTime = *tracking->startTime;
+			lowest->endHub = tracking->endHub;
 		}
 
 		return;
