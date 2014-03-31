@@ -78,10 +78,10 @@ void FlightPlan::printItinerary() {
 
 	while(path[i] != NULL && i < 2){
 		cout << "\n" << endl;
-		cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t\t" << path[i]->source->location << " \t" << path[i]->departure->ToString() << endl;
-		cout << "\t\t\t\t" << path[i]->destination->location << " \t" << calculateArrivalTime()->ToString() << endl << endl;  
-		cout << "\t\t\t\t" << "PRICE: " << "\t\t$" << path[i]->price << " (ticket)" << endl;
-		cout << "\t\t\t\t\t       + $" << path[i]->getBaggageFees(bags) << "    (baggage)" << endl;
+		cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t\t" << path[i]->source->location << "\t\t" << path[i]->departure->ToString() << endl;
+		cout << "\t\t\t\t" << path[i]->destination->location << "\t" << calculateArrivalTime()->ToString() << endl << endl;  
+		cout << "\t\t\t\t " << "PRICE: " << "\t" << path[i]->price << "\t(ticket)" << endl;
+		cout << "\t\t\t\t\t\t" << path[i]->getBaggageFees(bags) << "\t(baggage)" << endl;
 		cout << "\n"	<< endl;
 		i = i + 1; 
 	}

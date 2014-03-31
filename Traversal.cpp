@@ -23,27 +23,22 @@ void deallocateFlights(FlightNode *head)
 };
 
 
-//NOT WORKING NOT PRINTING TOP OF LIST - If debug the top of list starts to print but later gets removed (not sure why this happens)
 void printFlights(HubNode *headHub)
 {
 	
-	//Error:  passed by address, when moving hub previously the values
-	// of headHub was changed (i.e. the address)
-	
-	// Created local HubNode ptr variable (maybe rename tempHub)
 	HubNode* hub = headHub;
 
-	while(hub != NULL)  //changed from hub->next != NULL, does not print entire list
+	while(hub != NULL)  
 	{
 
 		std::string hub_name = hub->name;
 		std::string hub_location = hub->location;
-		FlightNode *flight = hub->headFlights;  // made local
+		FlightNode *flight = hub->headFlights;  
 
 		std::cout<<"\n\n"<< hub_name << " - " << hub_location<< endl;
 		std::cout<<"=================================================\n\nDepartures:\n"<< endl;
 		
-		while(flight != NULL)	// same change as first while loop
+		while(flight != NULL)	
 		{
 
 			std::string Destination = flight->destination->name;
@@ -64,10 +59,7 @@ void printFlights(HubNode *headHub)
 
 HubNode* searchHub(std::string hub_name, HubNode *hub)
 {
-	//Error:  passed by address, when moving hub prev the value
-	// of headHub was changed (i.e. the address)
-	
-	// Created local HubNode ptr variable 
+	 
 	HubNode* tempHub = hub;
 
 	while(tempHub != NULL)

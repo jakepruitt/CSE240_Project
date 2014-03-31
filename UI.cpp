@@ -1,3 +1,5 @@
+//NOT WORKING!!!!! 
+
 #include "UI.h"
 #include <iostream>
 #include <string>
@@ -167,6 +169,7 @@ void displayMenu(){
 				break;
 			default:
 				cout<<"Enter a valid input.\n\n"<<endl;
+				cin.ignore();
 				break;
 		}
 		cin.ignore();
