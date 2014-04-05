@@ -25,7 +25,7 @@ int main()
 
 	//Test Case 1
 	Date_Time* startTestDate1 = new Date_Time("00/00/16/12/2013");
- 	Date_Time* endTestDate1 = new Date_Time("00/00/18/12/2013");
+ 	Date_Time* endTestDate1 = new Date_Time("59/23/18/12/2013");
 	cout << "\nTEST CASE 1: Shortest \n" << endl;
  	createFlightPlan(startTestDate1, endTestDate1, "Los Angeles", 3, "shortest");
 	cout << "\n\n\nTEST CASE 1: Cheapest \n" << endl;
