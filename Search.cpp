@@ -5,6 +5,7 @@
 #include "HubNode.h"
 #include "Traversal.h"
 #include <iostream>
+#include <iomanip>
 
 using namespace std;
 
@@ -77,17 +78,28 @@ void FlightPlan::printItinerary() {
 	}
 
 	while(path[i] != NULL && i < 2){
+		
+		//Print Flight
 		cout << "\n" << endl;
-		cout << path[i]->flightNumber << "\t" << path[i]->flightCompany << "\t\t" << path[i]->source->location << "\t\t" << path[i]->departure->ToString() << endl;
-		cout << "\t\t\t\t" << path[i]->destination->location << "\t" << calculateArrivalTime()->ToString() << endl << endl;  
-		cout << "\t\t\t\t " << "PRICE: " << "\t" << path[i]->price << "\t(ticket)" << endl;
-		cout << "\t\t\t\t\t\t" << path[i]->getBaggageFees(bags) << "\t(baggage)" << endl;
-		cout << "\n"	<< endl;
+		cout << setw(15) << left << path[i]->flightNumber;
+		cout << setw(15) << left << path[i]->flightCompany;
+		cout << setw(15) << left << path[i]->source->location;
+		cout << left	 << path[i]->departure->ToString() << endl;
+		cout << setw(30) << right << " ";
+		cout << setw(15) << left << path[i]->destination->location; //fix
+		cout << left << calculateArrivalTime()->ToString() << endl << endl;  
+		
+		//Print Fees
+		cout << setw(30) << right << " ";
+		cout << left     << "$" << path[i]->price << " Base Price + $" << path[i]->getBaggageFees(bags) << " Baggage Fees = $" << (path[i]->price + path[i]->getBaggageFees(bags));		
 		i = i + 1; 
+
 	}
 
+	cout << "\n" << endl;
 	cout << "NUMBER OF BAGS: " << bags << endl; 
 	cout << "TOTAL PRICE:    $" << calculateCost(bags) << endl;
+
 }
 
 /* Handler function to take in the user's input from the command line and call the appropriate recursive search algorthm.  
