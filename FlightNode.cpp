@@ -1,7 +1,5 @@
 #include "FlightNode.h"
 
-//NOTE!!!:  We do not use a constructor when creating FlightNodes!
-
 FlightNode::~FlightNode() {
 	delete departure;
 	delete arrival;
@@ -23,7 +21,7 @@ int FlightSouthWest::getDelay() {
 };
 
 float FlightDelta::getBaggageFees(int numBags) {
-	return 0;
+	return 0;  // No bag fees
 };
 
 int FlightDelta::getDelay() {

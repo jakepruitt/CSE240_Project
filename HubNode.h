@@ -8,7 +8,7 @@ using namespace std;
 
 class FlightNode;
 
-class HubNode{ // May want to consider making some var private
+class HubNode{ 
 	public:
 		string name;
 		string location;

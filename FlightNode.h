@@ -9,7 +9,7 @@ using namespace std;
 
 class HubNode;  
 
-class FlightNode{  // May want to consider making some var private
+class FlightNode{  
 	public:
 		string flightNumber;
 		double price;
