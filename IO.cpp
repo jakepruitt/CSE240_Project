@@ -28,6 +28,9 @@ void importHub() {
 		getline(fileHandler, ignore, '\n');
 		while(getline(fileHandler, airport, ',')){
 			getline(fileHandler, cityName, '\n');
+			std::size_t found=cityName.find('\r');
+			if (found!=std::string::npos)
+				cityName.erase(found, 1);
 			//getline(fileHandler, ignore, '\n');  // Line causes errors depending on OS
 			// To fix error change line 30 to '\r' and uncomment line 31
 			addHub(airport, cityName);
@@ -70,7 +73,10 @@ void importFlight() {
 			getline(fileHandler, departureTime, ',');
 			getline(fileHandler, duration, ',');
 			istringstream(duration) >> duration_num;		// Converts from string to int
-			getline(fileHandler, company, '\n');			
+			getline(fileHandler, company, '\n');	
+			std::size_t found=company.find('\r');
+			if (found!=std::string::npos)
+				company.erase(found, 1);
 			//getline(fileHandler, ignore, '\n');			// Line causes errors depending on OS
 			// To fix error change line 72 to '\r' and uncomment line 73
 			addFlight(flightNumber, price_num, departureTime, duration_num, sourceAirport, destinationAirport, company);  
