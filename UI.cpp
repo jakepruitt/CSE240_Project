@@ -1,3 +1,9 @@
+/*
+*Works with some locations; however, an error occurs when the
+*programs runs through the Search.cpp file at line120.
+*/
+
+
 #include "UI.h"
 #include <iostream>
 #include <string>
@@ -15,14 +21,20 @@ Date_Time* endDate;
 string UI_destination(){
 
 	HubNode *compareNode = new HubNode();
-	string destination;
-
-	cout<<"Please enter your desired destination: "<<endl;
-	cin>>destination;
 	
-	cout<<"\n"<<endl;
+	//Destination input as a character array
+	//Converted to a string (must hit Enter twice for input b/c of cin.ignore())
+	char dest[25];
 
-	for(compareNode = headHub; compareNode->next!=NULL; compareNode=compareNode->next){
+	cout<<"Please enter your desired destination: ";
+	cin.ignore();
+	cin.getline(dest, 25, '\n');
+
+	string destination(dest);
+
+	//Checks to see if the destination entered is actually a possible destination.
+	//DOES NOT WORK...:/
+	/*for(compareNode = headHub; compareNode->next!=NULL; compareNode=compareNode->next){
 		if(compareNode->location == destination){
 			break;
 		}
@@ -30,7 +42,7 @@ string UI_destination(){
 	if(compareNode==NULL){
 		cout<<"Destination error. Try again.\n"<<endl;
 		UI_destination();
-	}
+	}*/
 
 	return destination;
 };
@@ -48,10 +60,21 @@ Date_Time* UI_departureStartDateTime() {
 	cin>>startMonth;
 	
 	string startM = to_string(startMonth);
+	//Adds a '0' to the month if it's a single digit
+	if(startMonth<10)
+	{
+		startM = "0" + startM;
+	}
+
 	cout<<"Day(Ex: 17): ";
 	cin>>startDay;
 	
 	string startD = to_string(startDay);
+	//Adds a '0' to the day if it's a single digit
+	if(startDay<10)
+	{
+		startD = "0" + startD;
+	}
 
 	startString = "00/00/" + startD + "/" + startM + "/2013";
 
@@ -71,10 +94,21 @@ Date_Time* UI_departureEndDateTime() {
 	cin>>endMonth;
 	
 	string endM = to_string(endMonth);
+	//Adds a '0' to the month if it's a single digit
+	if(endMonth<10)
+	{
+		endM = "0" + endM;
+	}
+
 	cout<<"Day(Ex: 07): ";
 	cin>>endDay;
 	
 	string endD = to_string(endDay);
+	//Adds a '0' to the day if it's a single digit
+	if(endDay<10)
+	{
+		endD = "0" + endD;
+	}
 
 	endString = "59/11/" + endD + "/" + endM + "/2013";
 
@@ -92,8 +126,16 @@ int numBags() {
 	cout<<"How many bags will you have? ";
 	cin>>bagNum;
 	
-	cout<<"\n"<<endl;
+	cout<<bagNum<<endl;
 
+	//Check if number of bags is not acceptable
+	try{
+		if(bagNum<0)	throw 1;
+	}
+	catch(int ie){
+		if(ie == 1){cout<<"Exception: Cannot have negative bags\n";}
+	}
+	
 	return bagNum;
 }
 
@@ -105,7 +147,6 @@ string filterType(){
 	cin>>fType;
 	
 	transform(fType.begin(), fType.end(), fType.begin(), ::tolower);
-	cout<<"\n"<<endl;
 	
 	if(fType!="cheapest"){
 		if(fType!="shortest"){
@@ -125,10 +166,11 @@ void displayMenu(){
 	int bagNum = -1;
 	string fType = "";
 	string sortChoice = "";
+	string option = "";
 	Date_Time *startDate = NULL, *endDate = NULL;
 
 	do{
-		cout<<"-----Flight Booking System Main Menu-----\n"<<endl;
+		cout<<"\n-----Flight Booking System Main Menu-----\n"<<endl;
 		cout<<"   1. Select departure date and time."<<endl;
 		cout<<"   2. Select destination."<<endl;
 		cout<<"   3. Enter number of bags."<<endl;
@@ -162,11 +204,19 @@ void displayMenu(){
 				} else {
 					createFlightPlan(startDate, endDate, destination, bagNum, sortChoice);
 				}
+				
+				//Allows user to go back to Main Menu and check for different flights
+				cout<<"\nWould you like to check more flights?(Y or N) ";
+				cin>>option;
+				if(option == "N")
+				{
+					selection = 6;
+				}
 				break;
 			case 6:
 				break;
 			default:
-				cout<<"Enter a valid input.\n\n"<<endl;
+				cout<<"Enter a valid input."<<endl;
 				break;
 		}
 		cin.ignore();
