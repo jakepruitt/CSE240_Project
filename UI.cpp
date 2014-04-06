@@ -1,9 +1,3 @@
-/*
-*Works with some locations; however, an error occurs when the
-*programs runs through the Search.cpp file at line120.
-*/
-
-
 #include "UI.h"
 #include <iostream>
 #include <string>
@@ -30,23 +24,11 @@ string UI_destination(){
 	char dest[200];
 
 	cout<<"Please enter your desired destination: ";
-	//cin.ignore();
 	cin.getline(dest, 200, '\n');
-	cout << dest;
+	cout << endl;
 
 	string destination(dest);
 
-	//Checks to see if the destination entered is actually a possible destination.
-	//DOES NOT WORK...:/
-	/*for(compareNode = headHub; compareNode->next!=NULL; compareNode=compareNode->next){
-	if(compareNode->location == destination){
-	break;
-	}
-	}
-	if(compareNode==NULL){
-	cout<<"Destination error. Try again.\n"<<endl;
-	UI_destination();
-	}*/
 	if (!hubExists(destination))
 	{
 		cout << "\n\nThat is not a valid destination. Please try again\n" << endl;
@@ -217,7 +199,7 @@ int numBags() {
 	cout<<"How many bags will you have? ";
 	cin>>bagNum;
 
-	cout<<bagNum<<endl;
+	cout<<endl;
 
 	//Check if number of bags is not acceptable
 	try{
@@ -234,7 +216,7 @@ int numBags() {
 string filterType(){
 	string fType;
 
-	cout<<"Do you want the cheapest or shortest flights?\nCheapest or shortest(lowercase)? ";
+	cout<<"Do you want the cheapest or shortest flights?\ncheapest or shortest(lowercase)? ";
 	cin>>fType;
 
 	transform(fType.begin(), fType.end(), fType.begin(), ::tolower);
