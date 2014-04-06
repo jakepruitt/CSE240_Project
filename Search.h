@@ -15,7 +15,7 @@ public:
 	Date_Time *startTime;
 	HubNode *startHub;
 	HubNode *endHub;
-	FlightNode *path[2];
+	FlightNode *path[50];
 
 	float calculateCost(int numBags);
 	Date_Time* calculateArrivalTime();
