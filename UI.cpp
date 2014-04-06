@@ -90,7 +90,8 @@ Date_Time* UI_departureStartDateTime() {
 		if ((startDay > 31) || 
 			(startDay < 1) || 
 			(startDay > 30 && (startMonth == 4 || startMonth == 6 || startMonth == 9 || startMonth == 11 ) ) || 
-			(startDay > 28 && startMonth == 2 ))
+			(startDay > 29 && (startMonth == 2 && startYear % 4 == 0) /* It's a leap year */) ||
+			(startDay > 28 && (startMonth == 2 && startYear % 4 != 0) /* It's not a leap year */))
 		{
 			throw 2;
 		}
@@ -171,7 +172,8 @@ Date_Time* UI_departureEndDateTime(Date_Time* startDateInput) {
 		if ((endDay > 31) || 
 			(endDay < 1) || 
 			(endDay > 30 && (endMonth == 4 || endMonth == 6 || endMonth == 9 || endMonth == 11 ) ) || 
-			(endDay > 28 && endMonth == 2 ))
+			(endDay > 29 && (endMonth == 2 && endYear % 4 == 0) /* It's a leap year */) ||
+			(endDay > 28 && (endMonth == 2 && endYear % 4 != 0) /* It's not a leap year */))
 		{
 			throw 2;
 		}
