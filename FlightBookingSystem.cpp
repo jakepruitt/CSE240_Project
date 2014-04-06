@@ -24,24 +24,16 @@ int main()
 	//displayMenu();
 
 	//Test Case 1
-	Date_Time* startTestDate1 = new Date_Time("00/00/16/12/2013");
- 	Date_Time* endTestDate1 = new Date_Time("59/23/18/12/2013");
+	/*Date_Time* startTestDate1 = new Date_Time("00/00/02/12/2013");
+ 	Date_Time* endTestDate1 = new Date_Time("59/23/18/12/2014");
 	cout << "\nTEST CASE 1: Shortest \n" << endl;
- 	createFlightPlan(startTestDate1, endTestDate1, "Los Angeles", 3, "shortest");
+ 	createFlightPlan(startTestDate1, endTestDate1, "Chicago", 3, "shortest");
 	cout << "\n\n\nTEST CASE 1: Cheapest \n" << endl;
-	createFlightPlan(startTestDate1, endTestDate1, "Los Angeles", 3, "cheapest");
+	createFlightPlan(startTestDate1, endTestDate1, "Chicago", 3, "cheapest");
  	delete startTestDate1;
- 	delete endTestDate1;
+ 	delete endTestDate1;*/
 
-	//Test Case 2
-	Date_Time* startTestDate = new Date_Time("00/00/16/12/2013");
- 	Date_Time* endTestDate = new Date_Time("00/00/19/12/2013");
-	cout << "\n\n\nTEST CASE 2: Shortest\n" << endl;
-	createFlightPlan(startTestDate, endTestDate, "Honolulu", 5, "shortest");
-	cout << "\n\n\nTEST CASE 2: Cheapest\n" << endl;
-	createFlightPlan(startTestDate, endTestDate, "Honolulu", 5, "cheapest");
- 	delete startTestDate;
- 	delete endTestDate;
+	displayMenu();
 
 	deallocateHubs(headHub);	//  Frees heap memory 
 	headHub = NULL;

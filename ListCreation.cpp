@@ -44,7 +44,8 @@ void addFlight(string FlightNumber, double price, string departure, int duration
 	newFlightNode->flightCompany = company;
 	newFlightNode->flightNumber = FlightNumber;
 	newFlightNode->price = price;
-	newFlightNode->departure = departureTime;  
+	newFlightNode->departure = departureTime; 
+	newFlightNode->departure->AddMinutes(newFlightNode->getDelay());
 	newFlightNode->duration = duration;
 	newFlightNode->source = sourceHub;
 	newFlightNode->destination = destinationHub;

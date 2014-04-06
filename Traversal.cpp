@@ -73,3 +73,20 @@ HubNode* searchHub(std::string hub_name, HubNode *hub)
 	}
 	return NULL;
 };
+
+bool hubExists(std::string hub_location)
+{
+	 
+	HubNode* tempHub = headHub;
+
+	while(tempHub != NULL)
+	{
+		if((tempHub->location).compare(hub_location) == 0)
+		{
+			return true;
+		}
+		
+		tempHub = tempHub->next;
+	}
+	return false;
+};

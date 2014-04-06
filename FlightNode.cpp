@@ -16,7 +16,7 @@ float FlightSouthWest::getBaggageFees(int numBags) {
 };
 
 int FlightSouthWest::getDelay() {
-	if(departure->getHours() >= 7 && departure->getHours() <= 17){return 30;}  // Add delay if time between 7 AM - 5 PM
+	if(departure->getHours() >= 7 && departure->getHours() < 17 || (departure->getHours() == 17 && departure->getMinutes() == 0)){return 30;}  // Add delay if time between 7 AM - 5 PM
 	return 0;  // No delay
 };
 
@@ -33,8 +33,8 @@ float FlightUSAirway::getBaggageFees(int numBags) {
 };
 
 int FlightUSAirway::getDelay() {
-	if(departure->getHours() >= 7 && departure->getHours() <= 17){return 10;}  // Add delay if time between 7 AM - 5 PM
-	if((departure->getHours() >= 7 && departure->getMinutes() >= 1) && departure->getHours() <= 1){return 15;} // Add delay if time between 5:01 PM - 1 AM
+	if(departure->getHours() >= 7 && departure->getHours() < 17 || (departure->getHours() == 17 && departure->getMinutes() == 0)){return 10;}  // Add delay if time between 7 AM - 5 PM
+	if(((departure->getHours() == 17 && departure->getMinutes() >= 1) || departure->getHours() >= 18 ) || ( departure->getHours() < 1 || (departure->getHours() == 1 && departure->getMinutes() == 0) )){return 15;} // Add delay if time between 5:01 PM - 1 AM
 	return 0;  // No delay
 };
 
