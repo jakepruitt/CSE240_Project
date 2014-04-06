@@ -17,22 +17,6 @@ int main()
 	importHub();		//  Load hub csv and creates hub linked list
 	importFlight();		//	Load flights csv and creates flight linked list
 
-	// OS CSV READING ERROR!
-	// If error occurs when loading csv files go to IO.cpp and change lines 30, 31 and 71, 72 (see comments in code)
-
-	//UI Functionality (not finished)
-	//displayMenu();
-
-	//Test Case 1
-	/*Date_Time* startTestDate1 = new Date_Time("00/00/02/12/2013");
- 	Date_Time* endTestDate1 = new Date_Time("59/23/18/12/2014");
-	cout << "\nTEST CASE 1: Shortest \n" << endl;
- 	createFlightPlan(startTestDate1, endTestDate1, "Chicago", 3, "shortest");
-	cout << "\n\n\nTEST CASE 1: Cheapest \n" << endl;
-	createFlightPlan(startTestDate1, endTestDate1, "Chicago", 3, "cheapest");
- 	delete startTestDate1;
- 	delete endTestDate1;*/
-
 	displayMenu();
 
 	deallocateHubs(headHub);	//  Frees heap memory 

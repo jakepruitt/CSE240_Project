@@ -100,6 +100,7 @@ void FlightPlan::printItinerary() {
 	cout << "NUMBER OF BAGS: " << bags << endl; 
 	cout << "TOTAL PRICE:    $" << calculateCost(bags) << endl;
 
+
 }
 
 /* Handler function to take in the user's input from the command line and call the appropriate recursive search algorthm.  
@@ -121,12 +122,13 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 	}
 	
 	if (lowest->path[0] == NULL) {
-		cout << "No flights found" << endl;
+		cout << "Sorry, no flights could be found based on those parameters.  Please type 'N' to try different dates or a different location." << endl;
 	} else {
 
 		lowest->startTime = lowest->path[0]->departure;
 
 		lowest->printItinerary();
+		cout<<"\nWould you like to proceed to purchase this ticket (Y)?  If not (N), type 'N' in order to change your information and try again." << endl;
 	}
 	
 	// Create a confirmation UI function called here that will restart if the user does not want the ticket

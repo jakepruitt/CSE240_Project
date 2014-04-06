@@ -1,9 +1,3 @@
-/*
-*Works with some locations; however, an error occurs when the
-*programs runs through the Search.cpp file at line120.
-*/
-
-
 #include "UI.h"
 #include <iostream>
 #include <string>
@@ -20,6 +14,8 @@ using namespace std;
 Date_Time* startDate;
 Date_Time* endDate;
 
+/*Make sure start date is before end date*/
+
 //Set destination
 string UI_destination(){
 
@@ -30,23 +26,11 @@ string UI_destination(){
 	char dest[200];
 
 	cout<<"Please enter your desired destination: ";
-	//cin.ignore();
 	cin.getline(dest, 200, '\n');
-	cout << dest;
+	cout << endl;
 
 	string destination(dest);
 
-	//Checks to see if the destination entered is actually a possible destination.
-	//DOES NOT WORK...:/
-	/*for(compareNode = headHub; compareNode->next!=NULL; compareNode=compareNode->next){
-	if(compareNode->location == destination){
-	break;
-	}
-	}
-	if(compareNode==NULL){
-	cout<<"Destination error. Try again.\n"<<endl;
-	UI_destination();
-	}*/
 	if (!hubExists(destination))
 	{
 		cout << "\n\nThat is not a valid destination. Please try again\n" << endl;
@@ -70,7 +54,10 @@ Date_Time* UI_departureStartDateTime() {
 	cout<<"Enter the start date.\n";
 	try {
 		cout<<"Year(Ex: 2013): ";
-		cin>>startYear;
+		string startYear_txt;
+		cin>>startYear_txt;
+		istringstream(startYear_txt) >> startYear;
+
 		if (startYear <= 2012 || startYear > 2014)
 		{
 			throw 0;
@@ -79,7 +66,10 @@ Date_Time* UI_departureStartDateTime() {
 		string startY = to_string(startYear);
 
 		cout<<"Month(Ex: 05): ";
-		cin>>startMonth;
+		string startMonth_txt;
+		cin>>startMonth_txt;
+		istringstream(startMonth_txt) >> startMonth;
+
 		if (startMonth <= 0 || startMonth > 12)
 		{
 			throw 1;
@@ -93,7 +83,9 @@ Date_Time* UI_departureStartDateTime() {
 		}
 
 		cout<<"Day(Ex: 17): ";
-		cin>>startDay;
+		string startDay_txt;
+		cin>>startDay_txt;
+		istringstream(startDay_txt) >> startDay;
 
 		if ((startDay > 31) || 
 			(startDay < 1) || 
@@ -134,7 +126,7 @@ Date_Time* UI_departureStartDateTime() {
 	return startDateInput;
 };
 
-Date_Time* UI_departureEndDateTime() {
+Date_Time* UI_departureEndDateTime(Date_Time* startDateInput) {
 	//Asks user for end date
 	string endString;
 	int endDay, endMonth, endYear;
@@ -143,7 +135,10 @@ Date_Time* UI_departureEndDateTime() {
 	cout<<"\nEnter the end date.\n";
 	try {
 		cout<<"Year(Ex: 2013): ";
-		cin>>endYear;
+		string endYear_txt;
+		cin>>endYear_txt;
+		istringstream(endYear_txt) >> endYear;
+
 		if (endYear <= 2012 || endYear > 2014)
 		{
 			throw 0;
@@ -152,7 +147,10 @@ Date_Time* UI_departureEndDateTime() {
 		string endY = to_string(endYear);
 
 		cout<<"Month(Ex: 05): ";
-		cin>>endMonth;
+		string endMonth_txt;
+		cin>>endMonth_txt;
+		istringstream(endMonth_txt) >> endMonth;
+
 		if (endMonth <= 0 || endMonth > 12)
 		{
 			throw 1;
@@ -166,7 +164,9 @@ Date_Time* UI_departureEndDateTime() {
 		}
 
 		cout<<"Day(Ex: 17): ";
-		cin>>endDay;
+		string endDay_txt;
+		cin>>endDay_txt;
+		istringstream(endDay_txt) >> endDay;
 
 		if ((endDay > 31) || 
 			(endDay < 1) || 
@@ -187,7 +187,9 @@ Date_Time* UI_departureEndDateTime() {
 
 		endDateInput = new Date_Time(endString);
 
-		
+		if (timeBetween(startDateInput, endDateInput) < 0){
+			throw 3;
+		}
 
 	} catch (int err) {
 		if (err == 0)
@@ -202,8 +204,12 @@ Date_Time* UI_departureEndDateTime() {
 		{
 			cout << "\n\nYour Day was invalid, please try re-entering\n" << endl;
 		}
+		else if (err == 3)
+		{
+			cout << "\n\nPlease check that your end date comes after your start date.\n" << endl;
+		}
 
-		endDateInput = UI_departureEndDateTime();
+		endDateInput = UI_departureEndDateTime(startDateInput);
 	}
 
 	return endDateInput;
@@ -217,7 +223,7 @@ int numBags() {
 	cout<<"How many bags will you have? ";
 	cin>>bagNum;
 
-	cout<<bagNum<<endl;
+	cout<<endl;
 
 	//Check if number of bags is not acceptable
 	try{
@@ -234,7 +240,7 @@ int numBags() {
 string filterType(){
 	string fType;
 
-	cout<<"Do you want the cheapest or shortest flights?\nCheapest or shortest(lowercase)? ";
+	cout<<"Do you want the cheapest or shortest flights?\ncheapest or shortest(lowercase)? ";
 	cin>>fType;
 
 	transform(fType.begin(), fType.end(), fType.begin(), ::tolower);
@@ -250,7 +256,7 @@ string filterType(){
 }
 
 void displayMenu(){
-	int selection;
+	int selection = 0;
 	string input;
 	string destination = "";
 	int departTime = 0;
@@ -269,16 +275,17 @@ void displayMenu(){
 		cout<<"   5. Search for a flight."<<endl;
 		cout<<"   6. Exit.\n"<<endl;
 
+		selection = 0;
 		cout<<"Please make a selection(e.g. 1): ";
 		std::cin >> input;
-		istringstream(input) >> selection;	
+		istringstream(input) >> selection;
 		cout<<endl;
 
 
 		switch(selection){
 		case 1:
 			startDate = UI_departureStartDateTime();
-			endDate = UI_departureEndDateTime();
+			endDate = UI_departureEndDateTime(startDate);
 			break;
 		case 2:
 			cin.ignore();
@@ -298,12 +305,13 @@ void displayMenu(){
 				createFlightPlan(startDate, endDate, destination, bagNum, fType);
 
 				//Allows user to go back to Main Menu and check for different flights
-				cout<<"\nWould you like to check more flights?(Y or N) ";
 				cin>>option;
-				if(option == "N")
+				if(option == "N" || option == "n")
 				{
-					selection = 6;
+					break;
 				}
+				cout << "\nWonderful! Your tickets have been booked.  See above for details." << endl;
+				selection = 6;
 			}
 			
 			break;
@@ -311,8 +319,8 @@ void displayMenu(){
 			break;
 		default:
 			cout<<"Enter a valid input."<<endl;
-			break;
 			cin.ignore();
+			break;
 		}
 	}while(selection!=6);
 

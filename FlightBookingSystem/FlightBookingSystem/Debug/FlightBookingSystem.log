@@ -1,19 +1,10 @@
-﻿Build started 4/5/2014 5:51:53 PM.
-     1>Project "C:\Users\Andrew\Documents\GitHub\CSE240_Project\FlightBookingSystem\FlightBookingSystem\FlightBookingSystem.vcxproj" on node 2 (Build target(s)).
+﻿Build started 4/5/2014 8:03:31 PM.
+     1>Project "C:\Users\Jake\Documents\GitHub\CSE240_Project\FlightBookingSystem\FlightBookingSystem\FlightBookingSystem.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\Date_Time.cpp ..\..\FlightBookingSystem.cpp ..\..\FlightNode.cpp ..\..\HubNode.cpp ..\..\IO.cpp ..\..\ListCreation.cpp ..\..\Search.cpp ..\..\Traversal.cpp ..\..\UI.cpp
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\CL.exe /c /ZI /nologo /W3 /WX- /sdl /Od /Oy- /D _MBCS /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc110.pdb" /Gd /TP /analyze- /errorReport:prompt ..\..\UI.cpp
          UI.cpp
-         Traversal.cpp
-         Search.cpp
-         ListCreation.cpp
-         IO.cpp
-         HubNode.cpp
-         FlightNode.cpp
-         FlightBookingSystem.cpp
-         Date_Time.cpp
-         Generating Code...
        Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Andrew\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Andrew\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Andrew\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.lib" /MACHINE:X86 Debug\Date_Time.obj
+         C:\Program Files (x86)\Microsoft Visual Studio 11.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\Jake\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.exe" /INCREMENTAL /NOLOGO kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\Jake\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.pdb" /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\Jake\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.lib" /MACHINE:X86 Debug\Date_Time.obj
          Debug\FlightBookingSystem.obj
          Debug\FlightNode.obj
          Debug\HubNode.obj
@@ -22,9 +13,9 @@
          Debug\Search.obj
          Debug\Traversal.obj
          Debug\UI.obj
-         FlightBookingSystem.vcxproj -> C:\Users\Andrew\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.exe
-     1>Done Building Project "C:\Users\Andrew\Documents\GitHub\CSE240_Project\FlightBookingSystem\FlightBookingSystem\FlightBookingSystem.vcxproj" (Build target(s)).
+         FlightBookingSystem.vcxproj -> C:\Users\Jake\Documents\GitHub\CSE240_Project\FlightBookingSystem\Debug\FlightBookingSystem.exe
+     1>Done Building Project "C:\Users\Jake\Documents\GitHub\CSE240_Project\FlightBookingSystem\FlightBookingSystem\FlightBookingSystem.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:14.58
+Time Elapsed 00:00:01.60
