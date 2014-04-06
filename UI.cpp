@@ -12,6 +12,8 @@
 #include "Date_Time.h"
 #include "Traversal.h"
 #include <algorithm>
+#include <fstream>	
+#include <sstream>
 
 using namespace std;
 
@@ -249,7 +251,7 @@ string filterType(){
 
 void displayMenu(){
 	int selection;
-
+	string input;
 	string destination = "";
 	int departTime = 0;
 	int bagNum = -1;
@@ -268,7 +270,8 @@ void displayMenu(){
 		cout<<"   6. Exit.\n"<<endl;
 
 		cout<<"Please make a selection(e.g. 1): ";
-		std::cin >> selection;
+		std::cin >> input;
+		istringstream(input) >> selection;	
 		cout<<endl;
 
 
