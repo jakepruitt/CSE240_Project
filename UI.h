@@ -6,7 +6,7 @@
 
 string UI_destination();
 Date_Time* UI_departureStartDateTime();
-Date_Time* UI_departureEndDateTime();
+Date_Time* UI_departureEndDateTime(Date_Time* startDateInput);
 int numBags();
 string filterType();
 void displayMenu();
