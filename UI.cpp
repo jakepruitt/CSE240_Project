@@ -280,12 +280,14 @@ void displayMenu(){
 				createFlightPlan(startDate, endDate, destination, bagNum, fType);
 
 				//Allows user to go back to Main Menu and check for different flights
-				cout<<"\nWould you like to check more flights?(Y or N) ";
+				cout<<"\nWould you like to proceed to purchase this ticket (Y)?  If not (N), type 'N' in order to change your information and try again.";
 				cin>>option;
-				if(option == "N")
+				if(option == "N" || option == "n")
 				{
-					selection = 6;
+					break;
 				}
+				cout << "\nWonderful! Your tickets have been booked.  See above for details." << endl;
+				selection = 6;
 			}
 			
 			break;
