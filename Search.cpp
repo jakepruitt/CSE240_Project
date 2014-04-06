@@ -87,7 +87,7 @@ void FlightPlan::printItinerary() {
 		cout << left	 << path[i]->departure->ToString() << endl;
 		cout << setw(30) << right << " ";
 		cout << setw(15) << left << path[i]->destination->location; //fix
-		cout << left << calculateArrivalTime()->ToString() << endl << endl;  
+		cout << left << path[i]->arrival->ToString() << endl << endl;  
 		
 		//Print Fees
 		cout << setw(30) << right << " ";
@@ -120,9 +120,14 @@ void createFlightPlan(Date_Time* startDate, Date_Time* endDate, string destinati
 		searchForShortest(lowest->startHub, destination, lowest, tracking, 0, startDate, endDate);
 	}
 	
-	lowest->startTime = lowest->path[0]->departure;
+	if (lowest->path[0] == NULL) {
+		cout << "No flights found" << endl;
+	} else {
 
-	lowest->printItinerary();
+		lowest->startTime = lowest->path[0]->departure;
+
+		lowest->printItinerary();
+	}
 	
 	// Create a confirmation UI function called here that will restart if the user does not want the ticket
 	tracking->startTime = NULL;
@@ -178,7 +183,7 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 				tracking->endHub = tempFlight->destination;
 				*tracking->startTime = *tempFlight->departure;
 				tracking->startTime->AddMinutes(tempFlight->getDelay());
-				searchForShortest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate);
+				searchForCheapest(tempFlight->destination,destination, lowest, tracking, (depth + 1), startDate, endDate, bags);
 			}
 
 

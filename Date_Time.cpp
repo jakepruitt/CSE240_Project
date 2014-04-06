@@ -78,14 +78,21 @@ void Date_Time::AddMinutes(int min){
 	if(min >= 60){  //Increase hour and minutes
 		increaseInHours = min / 60;
 		hours += increaseInHours;
-		minutes = min % 60;
+		minutes += min % 60;
 	}
 	else{
 		minutes = minutes + min;
 	}
-	if (hours > 23)
+
+	if (minutes >= 60)
 	{
-		hours %= 24;
+		minutes = minutes % 60;
+		hours++;
+	}
+
+	if (hours >= 24)
+	{
+		hours = hours % 24;
 		day++;
 	}
 

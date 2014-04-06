@@ -9,4 +9,5 @@
 	void deallocateHubs(HubNode *head);
 	void deallocateFlights(FlightNode *head);
 	void printFlights(HubNode *hub);
+	bool hubExists(std::string hub_location);
 #endif
