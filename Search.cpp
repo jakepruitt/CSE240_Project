@@ -176,12 +176,9 @@ void searchForCheapest(HubNode* source, string destination, FlightPlan* lowest, 
 		while (tempFlight != NULL) {
 			/* Iterates through all of the flights, adding the flight to the FlightPlan's path, and setting the
 				FlightPlan's endHub equal to the flight's destination. */
-			if (depth == 0)
+			for (int i = depth; i < 50; i++)
 			{
-				for (int i = 0; i < 50; i++)
-				{
-					tracking->path[i] = NULL;
-				}
+				tracking->path[i] = NULL;
 			}
 			
 			/* Conditional check to see if second flight starts after first. */
@@ -236,12 +233,9 @@ void searchForShortest(HubNode* source, string destination, FlightPlan* lowest, 
 		while (tempFlight != NULL) {
 			/* Iterates through all of the flights, adding the flight to the FlightPlan's path, and setting the
 				FlightPlan's endHub equal to the flight's destination. */
-			if (depth == 0)
+			for (int i = depth; i < 50; i++)
 			{
-				for (int i = 0; i < 50; i++)
-				{
-					tracking->path[i] = NULL;
-				}
+				tracking->path[i] = NULL;
 			}
 			
 			/* Conditional check to see if second flight starts after first. */
